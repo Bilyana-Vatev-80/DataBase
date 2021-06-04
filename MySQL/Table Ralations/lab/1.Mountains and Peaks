@@ -1,0 +1,12 @@
+CREATE TABLE `mountains` (
+    `id` INT UNSIGNED UNIQUE AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE `peaks` (
+    `id` INT UNSIGNED UNIQUE AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50) NOT NULL,
+    `mountain_id` INT UNSIGNED UNIQUE,
+    CONSTRAINT `fk_peaks_mountains` FOREIGN KEY (`mountain_id`)
+        REFERENCES `mountains` (`id`)
+);
