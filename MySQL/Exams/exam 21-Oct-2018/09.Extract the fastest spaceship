@@ -1,0 +1,4 @@
+SELECT s.`name` AS 'spaceship_name', st.`name` AS 'spaceport_name' FROM spaceships AS `s`
+JOIN journeys AS j ON s.id = j.spaceship_id
+JOIN spaceports AS st ON j.destination_spaceport_id = st.id
+ORDER BY s.light_speed_rate DESC LIMIT 1;
