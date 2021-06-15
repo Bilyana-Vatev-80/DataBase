@@ -1,0 +1,17 @@
+DELIMITER &&
+CREATE FUNCTION ufn_count_employees_by_town (town_name VARCHAR(45))
+RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+    DECLARE e_count INT;
+	RETURN (SELECT count(*) AS 'count'
+	FROM employees AS e
+	JOIN addresses AS a
+	USING (address_id)
+	JOIN towns as t
+	USING (town_id)
+	WHERE t.name = town_name
+	GROUP BY t.`name`);
+
+END
+DELIMITER &&
