@@ -1,0 +1,8 @@
+DELIMITER $$
+CREATE PROCEDURE usp_deposit_money(account_id INT, money_amount DECIMAL(10,4))
+BEGIN
+   UPDATE  accounts as a
+   JOIN `account_holders` as ah ON a.`account_holder_id` = ah.id
+   SET a.balance = if(money_amount>0, ROUND(a.balance + money_amount,4), a.balance)
+   WHERE a.id = account_id;
+   END;
