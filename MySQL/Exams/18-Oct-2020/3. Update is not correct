@@ -1,0 +1,4 @@
+UPDATE employees
+SET salary = salary - 500, manager_id = 3
+WHERE store_id != 5 AND store_id != 14
+AND hire_date > '2003-01-01';
