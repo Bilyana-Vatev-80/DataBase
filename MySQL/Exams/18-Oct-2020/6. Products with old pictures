@@ -1,0 +1,7 @@
+SELECT p.`name`, p.price, p.best_before, CONCAT(LEFT(p.`description`, 10), '...') AS short_description,
+pi.url FROM products AS p
+JOIN pictures pi ON p.picture_id = pi.id
+WHERE p.`description` > LEFT(p.description, 100) AND
+pi.added_on <= '2019-01-01'
+AND p.price > 20
+ORDER BY p. price DESC;
