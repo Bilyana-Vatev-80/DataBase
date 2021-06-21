@@ -3,9 +3,9 @@
 # or NULL and must be older than 2010(inclusive).
 # Skip the cars that contain a make value of Mercedes-Benz. They can work for many more years.
 
-SELECT co.`car_id`, c.`make`, c.`mileage`,
-COUNT(co.`car_id`) AS 'count_of_courses', AVG(ROUND(co.`bill`,2)) AS 'avg_bill' FROM courses AS co
-LEFT JOIN cars AS c ON co.`car_id` = c.`id`
-WHERE COUNT(co.`car_id`) != 2
-GROUP BY c.`id`
-ORDER BY count_of_courses DESC, co.`car_id`;
+UPDATE cars
+SET `condition` = 'C'
+WHERE `mileage`>= 800000
+OR mileage IS NULL
+AND `year`<= 2010
+AND make NOT IN('Mercedes-Benz');
