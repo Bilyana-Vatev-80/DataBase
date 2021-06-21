@@ -1,0 +1,15 @@
+# The headquarters want us to make a query that shows the complete information about all courses in the database.
+# The information that they need is the address, if the course is made in the Day (between 6 and 20(inclusive both))
+# or in the Night (between 21 and 5(inclusive both)),
+# the bill of the course, the full name of the client, the car maker, the model and the name of the category.
+# Order the results by course id.
+
+SELECT ad.name,  if (HOUR(co.start) >= 6 AND HOUR(co.start) <= 20, 'Day', 'Night') AS day_time,
+SUM(bill) AS bill, cl.full_name, c.make, c.model, cat.name AS category_name
+FROM addresses ad
+JOIN courses co ON co.from_address_id = ad.id
+JOIN clients cl ON cl.id = co.client_id
+JOIN cars c ON co.car_id = c.id
+JOIN categories cat ON cat.id = c.category_id
+GROUP BY co.id
+ORDER BY co.id;
