@@ -1,0 +1,11 @@
+# After many kilometers and over the years, the condition of cars is expected to deteriorate.
+# Update all cars and set the condition to be 'C'. The cars  must have a mileage greater than 800000 (inclusive)
+# or NULL and must be older than 2010(inclusive).
+# Skip the cars that contain a make value of Mercedes-Benz. They can work for many more years.
+
+SELECT co.`car_id`, c.`make`, c.`mileage`,
+COUNT(co.`car_id`) AS 'count_of_courses', AVG(ROUND(co.`bill`,2)) AS 'avg_bill' FROM courses AS co
+LEFT JOIN cars AS c ON co.`car_id` = c.`id`
+WHERE COUNT(co.`car_id`) != 2
+GROUP BY c.`id`
+ORDER BY count_of_courses DESC, co.`car_id`;
